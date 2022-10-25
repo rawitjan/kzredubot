@@ -1,0 +1,20 @@
+{
+  "name": "redu-tg-quiz-game",
+  "version": "1.0.0",
+  "description": "game for telegram",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "js"
+  ],
+  "author": "REDU Academy",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-telegram-bot-api": "^0.59.0",
+    "telegraf": "^4.10.0"
+  }
+}
