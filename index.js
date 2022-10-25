@@ -17,7 +17,7 @@ bot.on("callback_query", function (query) {
         bot.answerCallbackQuery(query.id, "" + query.game_short_name + "");
     } else {
         queries[query.id] = query;
-        let gameurl = "https://rawitjan.github.io/telegram_game_front/";
+        let gameurl = "https://rawitjan.github.io/QuizTG/";
         bot.answerCallbackQuery({
             callback_query_id: query.id,
             url: gameurl
