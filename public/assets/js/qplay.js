@@ -260,7 +260,7 @@ function showResult(){
     quiz_box.style.display = "none"; 
     result_box.style.display = "block"; 
     const scoreText = document.getElementById("score");
-    let scoreTag = '<table class="table"><tr><th scope="row">Қате:</th><td>'+ incorque +'</td></tr><tr><th scope="row">Дұрыс:</th><td>'+ userScore +'</td></tr><tr><th scope="row">Барлық сұрақ саны:</th><td>'+ questions.length +'</td></tr></table>'
+    let scoreTag = '<table class="table small"><tr><th scope="row">Қате:</th><td>'+ incorque +'</td></tr><tr><th scope="row">Дұрыс:</th><td>'+ userScore +'</td></tr><tr><th scope="row">Барлық сұрақ саны:</th><td>'+ questions.length +'</td></tr></table>'
     scoreText.innerHTML = scoreTag; 
     var xmlhttp = new XMLHttpRequest();
     var url = "https://kzredubot.herokuapp.com/highscore/" + userScore + "?id=" + playerid;
