@@ -264,12 +264,6 @@ function showResult(){
     scoreText.innerHTML = scoreTag; 
     var xmlhttp = new XMLHttpRequest();
     var url = "https://kzredubot.herokuapp.com/highscore/" + userScore + "?id=" + playerid;
-    var sendingText = document.getElementById("sendingText");
-    sendingText.style.display = "block";
-
-    xmlhttp.onreadystatechange = function() {
-      sendingText.style.display = "none";
-    };
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 }
