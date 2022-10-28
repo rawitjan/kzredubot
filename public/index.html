@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/style.css?v2">
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://telegram.org/js/games.js"></script>
+    <title>Quiz</title>
+</head>
+<body class="user-select-none">
+    <div class="container">
+        <div class="card border-light shadow-sm w-75 position-absolute top-50 start-50 translate-middle my-auto mx-auto" id="info">
+            <div class="card-body">
+                <h5 class="card-title">Quiz</h5>
+                <ol>
+                    <li>Сұрақ саны: <span class="h6 text-primary"><b id="questionsCount">10</b></span></li>
+                    <li>Жауаптар алмасуы: <span class="h6 text-primary"><b id="answerMixMode">Өшірулі</b></span></li>
+                    <li>Әр сұраққа берілетін уақыт: <span class="h6 text-primary"><b id="answerTime">15 секунд</b></span></li>
+                </ol>
+
+                <div class="alert alert-primary p-2">
+                    <i class="small">Сұрақтар материалды бекітуге арналған. ҰБТ-да дәл осы сұрақ келетіндігіне кепілдік бермейміз.</i>
+                </div>
+                
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-warning w-100" id="info">Жалғастыру <i class="bi bi-info"></i></button>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-success w-100" id="continue">Жалғастыру <i class="bi bi-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card border-light h-100 w-100 shadow-sm" id="quiz">
+            <div class="card-header bg-transparent">
+                <div class="row">
+                    <div class="col">
+                        <text class="fs-6">QUIZ</text>
+                        <text class="fs-6 text-success" id="correct"></text>
+                        <text class="fs-6 text-danger" id="incorrect"></text>
+                    </div>
+                    <div class="col text-end fs-5">
+                        <text id="time_text"><i class="bi bi-alarm"></i></text>
+                        <text id="timer">60</text>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body overflow-auto">
+                <text class="fs-5" id="que_text"></text><hr>
+                <div class="row row-cols-1 row-cols-md-5 g-4 mt-1" id="option_list">
+        
+                </div>
+            </div>
+            <div class="card-footer bg-white fixed-bottom">
+                <div class="row">
+                    <div class="col my-auto">
+                        <text class="text-muted" id="total_que"></text>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-primary text-white" id="next">Келесі сұрақ <i class="bi bi-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card border-light card-body shadow-sm w-75 position-absolute top-50 start-50 translate-middle mx-auto my-auto" id="result_box">
+            <div class="text-center text-primary fs-1"><i class="bi bi-trophy text-center fs-1"></i></div><br>
+            <div class="fs-5 text-center" id="score"></div><br>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-primary w-100" onclick="TelegramGameProxy.shareScore()"><i class="bi bi-telegram"></i> Нәтижемен бөлісу</button>
+                </div>
+                <div class="col">
+                    <button class="btn btn-success w-100" id="restart"><i class="bi bi-arrow-repeat"></i> Қайталау</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/qplay.js?v2"></script>
+</body>
+</html>
