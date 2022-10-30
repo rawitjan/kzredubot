@@ -10,26 +10,6 @@ const port = process.env.PORT || 5000;
 const gameName = "quiz";
 
 const queries = {};
-
-const COMMANDS = [
-    {
-      command: "start",
-      description: "Бастау",
-    },
-    {
-      command: "quiz",
-      description: "Quiz-ді бастау",
-    },
-    {
-      command: "help",
-      description: "Көмек",
-    },
-    {
-      command: "profile",
-      description: "Профиль (жуырда)",
-    }
-];
-
 const quizButtons = {
     parse_mode: 'markdown',
     disable_web_page_preview: false,
@@ -42,9 +22,6 @@ const quizButtons = {
     })
 };
 
-
-bot.setMyCommands(COMMANDS);
-
 bot.onText(/help/, (msg) => bot.sendMessage(msg.chat.id, "This bot implements a T-Rex jumping game. Say /game if you want to play."));
 bot.onText(/start|game/, (msg) => bot.sendGame(msg.chat.id, gameName, quizButtons));
 
@@ -53,7 +30,7 @@ bot.on("callback_query", function (query) {
         bot.answerCallbackQuery(query.id, "Кешірерсіз, '" + query.game_short_name + "' табылмады.");
     } else {
         queries[query.id] = query;
-        let gameurl = "https://kzredubot.herokuapp.com/index.html?id="+query.id;
+        let gameurl = "https://kzredubot.herokuapp.com/index.html?id="+query.id+"&quizID="+query.game_short_name;
         bot.answerCallbackQuery({
             callback_query_id: query.id,
             url: gameurl,
@@ -62,7 +39,7 @@ bot.on("callback_query", function (query) {
     }
 });
 bot.on("inline_query", function(iq) {
-      bot.answerInlineQuery(iq.id, [ { type: "game", id: Math.floor(Math.random() * 1111), game_short_name: gameName } ], quizButtons ); 
+    bot.answerInlineQuery(iq.id, [ { type: "game", id: Math.floor(Math.random() * 1111), game_short_name: gameName } ], quizButtons ); 
 });
 
 server.use(express.static(path.join(__dirname, 'public')));
@@ -84,4 +61,17 @@ server.get("/highscore/:score", function(req, res, next) {
     bot.setGameScore(query.from.id, parseInt(req.params.score), options, 
         function (err, result) {});
 });
+
+app.get('/quizes/:quizid', function (req, res) {
+    var quizID = req.params.quizid
+  
+    req.user.mayViewFilesFrom(quizID, function (yes) {
+      if (yes) {
+        res.sendFile('/db/quizes/' + quizID + '.js')
+      } else {
+        res.status(403).send("Quiz табылмады")
+      }
+    })
+});
+
 server.listen(port);
