@@ -1,5 +1,7 @@
+
 var url = new URL(location.href);
 var playerid = url.searchParams.get("id");
+var quizID = url.searchParams.get("quizID");
 
 const info_box = document.getElementById('info');
 const continue_btn = document.getElementById('continue');
@@ -14,141 +16,32 @@ quiz_box.style.display = "none";
 result_box.style.display = "none"; 
 next_btn.style.display = "none"; 
 
-continue_btn.onclick = ()=>{
-    info_box.style.display = "none"; 
-    quiz_box.style.display = "block"; 
-    showQuetions(0); 
-    queCounter(1); 
-    startTimer(60);
-}
+var js = document.createElement("script");
+//js.src = "assets/js/inf_1.js";
+js.src = "quizes/" + quizID;
+document.getElementById('cont').appendChild(js);
 
-let timeValue =  15;
 let que_count = 0;
 let que_numb = 1;
 let userScore = 0;
 let incorque = 0;
 let counter;
 
-let questions = [
-    {
-    numb: 1,
-    question: "XVIIғасырдың 40 жылдарынан бастап, Қазақ хандығына қауіп төндірген мемлекет:",
-    answer: "Жоңғария",
-    options: [
-      "Қоқан",
-      "Қытай",
-      "Жоңғария",
-      "Ресей"
-    ]
-  },
-    {
-    numb: 2,
-    question: "1715 жылы Тәуке өлгеннен кейін оның мирасқоры: ",
-    answer: "Қайып",
-    options: [
-      "Сәмеке",
-      "Әбілқайыр",
-      "Қайып",
-      "Әбілмәмбет"
-    ]
-  },
-    {
-    numb: 3,
-    question: "Қазақстанға жойқын жорықтар ұйымдастырған Жоңғарияның мақсаты:",
-    answer: "Қазақ елінің тәуелсіздігін жойып, ұлан-байтақ жерді өзіне қарату",
-    options: [
-      "Қазақ жасақтарын әлсіретіп, құрту",
-      "Бір мезгілде қазақтармен және Ресеймен соғысу",
-      "Қазақтармен экономикалық, сауда байланыстарын орнату",
-      "Қазақ елінің тәуелсіздігін жойып, ұлан-байтақ жерді өзіне қарату"
-    ]
-  },
-    {
-    numb: 4,
-    question: "1710 жылы қазақ жүздерінің белгілі өкілдері бас қосып, жоңғарларға соққы беру мәселесін талқылаған жер:",
-    answer: "Қарақұм",
-    options: [
-      "Қарақұм",
-      "Ұлытау",
-      "Ордабасы",
-      "Сарыарқа"
-    ]
-  },
-    {
-    numb: 5,
-    question: "1723 ж. Жоңғарияның барлық күш – қуатын қазақ еліне қарсы жұмсауға мүмкіндік алуының себебі:",
-    answer: "Цин императоры Кансидың өлімі",
-    options: [
-      "Қазақ феодалдарының өз ара қырқысы",
-      "Қазақ феодалдарының өз ара қырқысы",
-      "Цин императоры Кансидың өлімі",
-      "Қазақтардың қарақалпақтар мен өзбектерге қарсы күресте әлсіреуі"
-    ]
-  },
-  {
-    numb: 6,
-    question: "Қазақ халқының қасіреті болған «Ақтабан шұбырынды»:",
-    answer: "XVIII ғ. 20 жылдары",
-    options: [
-      "XVII ғ. 40 жылдары",
-      "XVIII ғ. ортасы",
-      "XVIII ғ. 20 жылдары",
-      "XVIII ғ. 30 жылдары"
-    ]
-  },
-  {
-    numb: 7,
-    question: "Жоңғардың қалың қолы Қазақстанға тұтқиылдан басып кірген жыл:",
-    answer: "1723 жылы",
-    options: [
-      "1723 жылы",
-      "1724 жылы",
-      "1726 жылы",
-      "1727 жылы"
-    ]
-  },
-  {
-    numb: 8,
-    question: "Жоңғарлардан қашқан Орта жүз рулары үдере көшті:",
-    answer: "Самарқанға",
-    options: [
-      "Ходжентке",
-      "Самарқанға",
-      "Тобыл маңына",
-      "Жайық бойына"
-    ]
-  },
-  {
-    numb: 9,
-    question: "Жоңғар шапқыншылығынан қатты ойрандалған:",
-    answer: "Жетісу",
-    options: [
-      "Шығыс Түркістан",
-      "Ташкент",
-      "Қаратау маңы",
-      "Жетісу"
-    ]
-  },
-  {
-    numb: 10,
-    question: "1723 ж. Жоңғарияның барлық күш – қуатын қазақ еліне қарсы жұмсауға мүмкіндік алуының себебі:",
-    answer: "Цин императоры Кансидың өлімі",
-    options: [
-      "Қазақ феодалдарының өз ара қырқысы",
-      "Қазақ феодалдарының өз ара қырқысы",
-      "Цин императоры Кансидың өлімі",
-      "Қазақтардың қарақалпақтар мен өзбектерге қарсы күресте әлсіреуі"
-    ]
-  },
-];
-
+continue_btn.onclick = ()=>{
+    info_box.style.display = "none"; 
+    quiz_box.style.display = "block"; 
+    showQuetions(0); 
+    queCounter(1); 
+    startTimer(timeValue);
+}
 
 const restart_quiz = document.getElementById('restart');
+
 
 restart_quiz.onclick = ()=>{
     quiz_box.style.display = "block"; 
     result_box.style.display = "none"; 
-    timeValue = 15; 
+    timeValue =  20;
     que_count = 0;
     que_numb = 1;
     userScore = 0;
@@ -179,6 +72,7 @@ next_btn.onclick = ()=>{
         showResult(); 
     }
 }
+
 let optionStart = '<div class="col mt-2"><div class="card h-100 shadow-sm option" id="option"><div class="row"><div class="col my-auto">';
 let optionEnd = '</div><div class="col-auto my-auto" id="icon"></div></div></div></div>';
 
@@ -194,13 +88,13 @@ function showQuetions(index){
     if (questions[index].options[0] != '') {
         option1 = optionStart + questions[index].options[0] + optionEnd;
     }
-    if (questions[index].options[1] != '') {
+    if (questions[index].options[1] != undefined) {
         option2 = optionStart + questions[index].options[1] + optionEnd;
     }
-    if (questions[index].options[2] != '') {
+    if (questions[index].options[2] != undefined) {
         option3 = optionStart + questions[index].options[2] + optionEnd;
     }
-    if (questions[index].options[3] != '') {
+    if (questions[index].options[3] != undefined) {
         option4 = optionStart + questions[index].options[3] + optionEnd;
     }
     if (questions[index].options[4] != undefined) {
