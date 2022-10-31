@@ -23,24 +23,17 @@ const quizButtons = {
 };
 
 bot.onText(/help/, (msg) => bot.sendMessage(msg.chat.id, "This bot implements a T-Rex jumping game. Say /game if you want to play."));
-bot.onText(/start|game/, (msg) => bot.sendGame(msg.chat.id, gameName, quizButtons));
+bot.onText(/start|game/, (msg) => bot.sendGame(msg.chat.id, "quiz", quizButtons));
+bot.onText(/inf_1/, (msg) => bot.sendGame(msg.chat.id, "inf_1", quizButtons));
 
 bot.on("callback_query", function (query) {
-    if (query.game_short_name !== gameName) {
-        bot.answerCallbackQuery(query.id, "Кешірерсіз, '" + query.game_short_name + "' табылмады.");
-    } else {
         queries[query.id] = query;
         let gameurl = "https://kzredubot.herokuapp.com/index.html?id="+query.id+"&quizID="+query.game_short_name;
         bot.answerCallbackQuery({
             callback_query_id: query.id,
             url: gameurl,
             text: "Бастау"
-        });
-    }
-});
-bot.on("inline_query", function(iq) {
-    bot.answerInlineQuery(iq.id, [ { type: "game", id: Math.floor(Math.random() * 1111), game_short_name: gameName } ], quizButtons ); 
-    bot.answerInlineQuery(iq.id, [ { type: "game", id: Math.floor(Math.random() * 1111), game_short_name: "inf_1" } ], quizButtons ); 
+    });
 });
 
 server.use(express.static(path.join(__dirname, 'public')));
