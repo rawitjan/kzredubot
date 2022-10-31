@@ -56,9 +56,4 @@ server.get("/highscore/:score", function(req, res, next) {
         function (err, result) {});
 });
 
-app.get('/quizes/:quizid', function (req, res) {
-    var quizID = req.params.quizid
-    res.sendFile("/db/quizes/" + quizID + ".js");
-});
-
 server.listen(port);
