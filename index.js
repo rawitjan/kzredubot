@@ -40,6 +40,7 @@ bot.on("callback_query", function (query) {
 });
 bot.on("inline_query", function(iq) {
     bot.answerInlineQuery(iq.id, [ { type: "game", id: Math.floor(Math.random() * 1111), game_short_name: gameName } ], quizButtons ); 
+    bot.answerInlineQuery(iq.id, [ { type: "game", id: Math.floor(Math.random() * 1111), game_short_name: "inf_1" } ], quizButtons ); 
 });
 
 server.use(express.static(path.join(__dirname, 'public')));
