@@ -40,6 +40,14 @@ bot.on("inline_query", function(iq) {
     bot.answerInlineQuery(iq.id, [ { type: "game", id: "0", game_short_name: iq.query } ] ); 
 });
 
+const intervalId = setInterval(function() {
+    console.log('set');
+    /*var xmlhttp = new XMLHttpRequest();
+    var url = "https://kzredubot.herokuapp.com/";
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();*/
+  }, 600000)
+
 server.use(express.static(path.join(__dirname, 'public')));
 
 server.get("/highscore/:score", function(req, res, next) {

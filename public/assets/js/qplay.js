@@ -18,7 +18,7 @@ next_btn.style.display = "none";
 
 var js = document.createElement("script");
 //js.src = "assets/js/inf_1.js";
-js.src = "assets/js/" + quizID + ".js";
+js.src = "quizes/" + quizID + ".js";
 document.getElementById('cont').appendChild(js);
 
 let que_count = 0;
