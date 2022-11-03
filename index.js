@@ -46,7 +46,7 @@ setInterval(function() {
     var url = "https://kzredubot.herokuapp.com/";
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
-  }, 600000)
+  }, 600000);
 
 server.use(express.static(path.join(__dirname, 'public')));
 
