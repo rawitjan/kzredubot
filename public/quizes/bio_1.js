@@ -1,5 +1,5 @@
 let title = 'Биология | Жасуша. Ұлпа. Тамыр жүйесі';
-let questionCount = 30;
+let questionCount = 38;
 let timeValue = 20;
 let answerMixing = false;
 let deadLine = false;
