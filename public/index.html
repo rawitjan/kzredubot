@@ -16,28 +16,34 @@
 </head>
 <body class="user-select-none">
     <div class="container" id="cont">
-        <div class="card border-light shadow-sm w-75 position-absolute top-50 start-50 translate-middle my-auto mx-auto" id="info">
-            <div class="card-body">
-                <h5 class="card-title">QUIZ | <span class="h5 text-primary"><b id="quizTitle"></b></span></h5>
-                <ol>
-                    <li>Сұрақ саны: <span class="h6 text-primary"><b id="questionsCount"></b></span></li>
-                    <li>Жауаптар алмасуы: <span class="h6 text-primary"><b id="answerMixMode">Өшірулі</b></span></li>
-                    <li>Әр сұраққа берілетін уақыт: <span class="h6 text-primary"><b id="answerTime">15 секунд</b></span></li>
-                    <li>Дедлайн: <span class="h6 text-primary"><b id="deadline">Шектеусіз</b></span></li>
-                </ol>
+        <div class="container-sm">
+            <div class="card border-light shadow-sm w-75 position-absolute top-50 start-50 translate-middle my-auto mx-auto" id="info">
+                <div class="card-body">
+                    <h5 class="card-title">QUIZ | <span class="h5 text-primary"><b id="quizTitle"></b></span></h5>
+                    <ol class="small lh-1 text-muted">
+                        <li>Сұрақ саны: <span class="h6 text-primary"><b id="questionsCount"></b></span></li>
+                        <li>Жауаптар алмасуы: <span class="h6 text-primary"><b id="answerMixMode">Өшірулі</b></span></li>
+                        <li>Әр сұраққа берілетін уақыт: <span class="h6 text-primary"><b id="answerTime">15 секунд</b></span></li>
+                        <li>Дедлайн: <span class="h6 text-primary"><b id="deadline">Шектеусіз</b></span></li>
+                    </ol>
 
-                <div class="alert alert-primary p-2">
-                    <i class="small">Сұрақтар материалды бекітуге арналған. ҰБТ-да дәл осы сұрақ келетіндігіне кепілдік бермейміз.</i>
-                </div>
-                
-                <div class="row">
-                    <div class="col">
-                        <button class="btn btn-success w-100" id="continue">Жалғастыру <i class="bi bi-arrow-right"></i></button>
+                    <div class="card card-body border-light shadow-sm p-2 lh-1" id="syllabus">
+
+                    </div>
+
+                    <div class="alert alert-primary p-2 lh-1">
+                        <i class="small">Сұрақтар материалды бекітуге арналған. ҰБТ-да дәл осы сұрақ келетіндігіне кепілдік бермейміз.</i>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-success w-100" id="continue">Жалғастыру <i class="bi bi-arrow-right"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <div class="card border-light h-100 w-100 shadow-sm" id="quiz">
             <div class="card-header bg-transparent">
                 <div class="row">
@@ -52,13 +58,13 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body overflow-auto">
+            <div class="card-body">
                 <text class="fs-5" id="que_text"></text><hr>
                 <div class="row row-cols-1 row-cols-md-5 g-4 mt-1" id="option_list">
         
                 </div>
             </div>
-            <div class="card-footer bg-white fixed-bottom">
+            <div class="card-footer bg-white">
                 <div class="row">
                     <div class="col my-auto">
                         <text class="text-muted" id="total_que"></text>

@@ -13,19 +13,26 @@ if (answerMixing == false) {
     document.getElementById('answerMixMode').textContent = 'Қосулы';
 };
 document.getElementById('answerTime').textContent = timeValue+' с.';
-
+if (syllabus != undefined) {
+    document.getElementById('info').classList.remove('w-75');
+    document.getElementById('info').classList.remove('position-absolute');
+    document.getElementById('info').classList.remove('top-50');
+    document.getElementById('info').classList.remove('start-50');
+    document.getElementById('info').classList.remove('translate-middle');
+    document.getElementById('syllabus').innerHTML = syllabus;
+};
 
 let questions = [
     {
-        numb: 1,
-        question: "Жасуша бөліктерін зақымданудан қорғайды:",
-        answer: "жасуша қабықшасы",
+        numb: ,
+        question: "",
+        answer: "",
         options: [
-            "цитоплазма", 
-            "вакуоль", 
-            "жасуша қабықшасы", 
-            "пластидтер", 
-            "ядро"
+            "", 
+            "", 
+            "", 
+            "", 
+            ""
         ]
     }
 ];
