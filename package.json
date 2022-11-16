@@ -1,6 +1,9 @@
 {
   "name": "redu-tg-quiz-game",
   "version": "1.0.0",
+  "engines": {
+    "node": "18.x"
+  },
   "description": "game for telegram",
   "main": "index.js",
   "scripts": {
