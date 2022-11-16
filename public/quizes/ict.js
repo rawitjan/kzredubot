@@ -1,5 +1,5 @@
 let title = 'ICT | Rashitov Rishat';
-let questionCount = 50;
+let questionCount = 20;
 let timeValue = 60;
 let answerMixing = false;
 let deadLine = false;
