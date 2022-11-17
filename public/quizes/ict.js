@@ -1,7 +1,7 @@
 var title = 'ICT | Rashitov Rishat';
 var questionCount = 20;
 var timeValue = 60;
-var answerMixing = false;
+var answerMixing = true;
 var deadLine = false;
 let syllabus = "Group: <span class='text-primary'>informatics 201</span>"
 
