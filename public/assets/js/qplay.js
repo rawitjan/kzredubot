@@ -76,6 +76,8 @@ next_btn.onclick = ()=>{
 let optionStart = '<div class="col mt-2"><div class="card h-100 shadow-sm option" id="option"><div class="row"><div class="col my-auto">';
 let optionEnd = '</div><div class="col-auto my-auto" id="icon"></div></div></div></div>';
 
+
+
 function showQuetions(index){
     const que_text = document.getElementById('que_text');
     var option1 = '';
@@ -83,6 +85,11 @@ function showQuetions(index){
     var option3 = '';
     var option4 = '';
     var option5 = '';
+
+    if (answerMixing == true) {
+        shuffle(questions[index].options);
+    };
+    
     
     let que_tag =  questions[index].numb + ". " + questions[index].question;
     if (questions[index].options[0] != '') {
@@ -196,4 +203,8 @@ function startTimer(time){
 function queCounter(index){
     let totalQueCounTag =  '№ '+ index +' / '+ questions.length +' сұрақ';
     bottom_ques_counter.innerHTML = totalQueCounTag;
+}
+
+function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
 }

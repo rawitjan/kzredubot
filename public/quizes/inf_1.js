@@ -1,8 +1,8 @@
-let title = 'Информатика №1';
-let questionCount = 30;
-let timeValue = 20;
-let answerMixing = false;
-let deadLine = false;
+var title = 'Информатика №1';
+var questionCount = 30;
+var timeValue = 20;
+var answerMixing = false;
+var deadLine = false;
 
 document.getElementById('quizTitle').textContent = title;
 document.getElementById('quizTitle2').textContent = title;

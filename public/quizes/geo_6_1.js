@@ -1,8 +1,8 @@
-let title = 'География 6 сынып №1';
-let questionCount = 50;
-let timeValue = 20;
-let answerMixing = false;
-let deadLine = false;
+var title = 'География 6 сынып №1';
+var questionCount = 50;
+var timeValue = 20;
+var answerMixing = false;
+var deadLine = false;
 
 document.getElementById('quizTitle').textContent = title;
 document.getElementById('quizTitle2').textContent = title;

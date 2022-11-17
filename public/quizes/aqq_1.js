@@ -1,8 +1,8 @@
-let title = 'Адам. Қоғам. Құқық | Адамның табиғаты';
-let questionCount = 24;
-let timeValue = 25;
-let answerMixing = false;
-let deadLine = false;
+var title = 'Адам. Қоғам. Құқық | Адамның табиғаты';
+var questionCount = 24;
+var timeValue = 25;
+var answerMixing = false;
+var deadLine = false;
 
 document.getElementById('quizTitle').textContent = title;
 document.getElementById('quizTitle2').textContent = title;

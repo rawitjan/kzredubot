@@ -1,8 +1,8 @@
-let title = 'ICT | Rashitov Rishat';
-let questionCount = 20;
-let timeValue = 60;
-let answerMixing = false;
-let deadLine = false;
+var title = 'ICT | Rashitov Rishat';
+var questionCount = 20;
+var timeValue = 60;
+var answerMixing = false;
+var deadLine = false;
 let syllabus = "Group: <span class='text-primary'>informatics 201</span>"
 
 document.getElementById('quizTitle').textContent = title;
