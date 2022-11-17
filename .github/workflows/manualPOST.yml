@@ -1,0 +1,10 @@
+name: Cron for restart bot
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call restart
+        run: curl -X POST https://kzredubot.herokuapp.com/
