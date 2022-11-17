@@ -28,7 +28,7 @@ bot.onText(/inf_1/, (msg) => bot.sendGame(msg.chat.id, "inf_1", quizButtons));
 
 bot.on("callback_query", function (query) {
         queries[query.id] = query;
-        let gameurl = "https://kzredubot.herokuapp.com/index.html?id="+query.id+"&quizID="+query.game_short_name"&game"+query.inline_message_id;
+        let gameurl = "https://kzredubot.herokuapp.com/index.html?id="+query.id+"&quizID="+query.game_short_name"&game="+query.inline_message_id;
         bot.answerCallbackQuery({
             callback_query_id: query.id,
             url: gameurl,
