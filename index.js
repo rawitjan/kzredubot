@@ -28,7 +28,7 @@ bot.onText(/inf_1/, (msg) => bot.sendGame(msg.chat.id, "inf_1", quizButtons));
 
 bot.on("callback_query", function (query) {
         queries[query.id] = query;
-        let gameurl = "https://kzredubot.herokuapp.com/index.html?id="+query.id+"&quizID="+query.game_short_name+"&game="+query.inline_message_id;
+        let gameurl = "https://kzredubot.herokuapp.com/index.html?id="+query.id+"&quizID="+query.game_short_name"&game"+query.inline_message_id;
         bot.answerCallbackQuery({
             callback_query_id: query.id,
             url: gameurl,
@@ -57,6 +57,24 @@ server.get("/highscore/:score", function(req, res, next) {
         };
     }
     bot.setGameScore(query.from.id, parseInt(req.params.score), options, 
+        function (err, result) {});
+});
+
+server.get("/getScore/:quizid", function(req, res, next) {
+    if (!Object.hasOwnProperty.call(queries, req.query.id)) return next();
+    let query = queries[req.query.id];
+    let options;
+    if (query.message) {
+        options = {
+            chat_id: query.message.chat.id,
+            message_id: query.message.message_id
+        };
+    } else {
+        options = {
+            inline_message_id: query.inline_message_id
+        };
+    };
+    bot.getGameHighScores(query.from.id, parseInt(req.params.quizid), options, 
         function (err, result) {});
 });
 

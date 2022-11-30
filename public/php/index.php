@@ -7,10 +7,10 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/style.css?v2">
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/style.css?v2">
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
     <script src="https://telegram.org/js/games.js"></script>
     <title>Quiz</title>
 </head>
@@ -20,21 +20,13 @@
             <div class="card border-light shadow-sm w-75 position-absolute top-50 start-50 translate-middle my-auto mx-auto" id="info">
                 <div class="card-body">
                     <h5 class="card-title">QUIZ | <span class="h5 text-primary"><b id="quizTitle"></b></span></h5>
-                    
-                    <div class="row">
-                        <div class="col-6 mt-2"><button type="button" class="btn btn-sm btn-white w-100 h-100 shadow-sm pe-none"><i class="bi bi-question"></i> Сұрақ саны</button></div>
-                        <div class="col-6 mt-2"><button type="button" class="btn btn-sm btn-white w-100 h-100 text-primary shadow-sm pe-none" id="questionsCount"></button></div>
-
-                        <div class="col-6 mt-2"><button type="button" class="btn btn-sm btn-white w-100 h-100 shadow-sm pe-none"><i class="bi bi-browser-edge"></i> Жауаптар алмасуы</button></div>
-                        <div class="col-6 mt-2"><button type="button" class="btn btn-sm btn-white w-100 h-100 text-primary shadow-sm pe-none" id="answerMixMode"></button></div>
-
-                        <div class="col-6 mt-2"><button type="button" class="btn btn-sm btn-white w-100 h-100 shadow-sm pe-none"><i class="bi bi-hourglass"></i> Әр сұраққа берілетін уақыт</button></div>
-                        <div class="col-6 mt-2"><button type="button" class="btn btn-sm btn-white w-100 h-100 text-primary shadow-sm pe-none" id="answerTime"></button></div>
-
-                        <div class="col-6 mt-2"><button type="button" class="btn btn-sm btn-white w-100 h-100 shadow-sm pe-none"><i class="bi bi-calendar-check"></i> Дедлайн</button></div>
-                        <div class="col-6 mt-2"><button type="button" class="btn btn-sm btn-white w-100 h-100 text-primary shadow-sm pe-none" id="deadline"></button></div>
-
-                    </div>
+                    table
+                    <ol class="small lh-1 text-muted">
+                        <li>Сұрақ саны: <span class="h6 text-primary"><b id="questionsCount"></b></span></li>
+                        <li>Жауаптар алмасуы: <span class="h6 text-primary"><b id="answerMixMode">Өшірулі</b></span></li>
+                        <li>Әр сұраққа берілетін уақыт: <span class="h6 text-primary"><b id="answerTime">15 секунд</b></span></li>
+                        <li>Дедлайн: <span class="h6 text-primary"><b id="deadline">Шектеусіз</b></span></li>
+                    </ol>
 
                     <div class="alert alert-primary p-2 lh-1 mt-1">
                         <i class="small">Сұрақтар материалды бекітуге арналған. ҰБТ-да дәл осы сұрақ келетіндігіне кепілдік бермейміз.</i>
@@ -64,7 +56,7 @@
                     </div>
                     <div class="col text-end fs-5 my-auto">
                         <button type="button" class="btn btn-white shadow d-none h-100" data-bs-toggle="modal" data-bs-target="#syllabusModal" id="sbtn2"><i class="bi bi-book"></i></button>
-                        <button class="btn btn-white shadow h-100 pe-none"><text id="time_text"><i class="bi bi-clock-history"></i></text>&nbsp;|&nbsp;<b><text id="timer" class="text-primary">00</text></b></button>
+                        <button class="btn btn-white shadow h-100 pe-none"><text id="time_text"><i class="bi bi-alarm"></i></text>&nbsp;|&nbsp;<b><text id="timer" class="text-primary">00</text></b></button>
                     </div>
                 </div>
             </div>
@@ -85,6 +77,8 @@
                     </div>
                 </div>
             </div>
+
+            
         </div>
 
         <footer id="footer">
@@ -108,22 +102,21 @@
     </div>
     
     <div class="modal fade" id="syllabusModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="syllabusModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="syllabusModalLabel"></h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="syllabus">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="syllabusModalLabel"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="syllabus">
                     ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Жабу</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Жабу</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <script src="assets/js/q.js?v10"></script>
+    <script src="../assets/js/qplay.js?v10"></script>
 </body>
 </html>

@@ -11,13 +11,14 @@ const option_list = document.getElementById('option_list');
 const timeText = document.getElementById('time_text');
 const timeCount = document.getElementById('timer');
 const next_btn = document.getElementById('next');
+const next_btn2 = document.getElementById('next2');
 
 quiz_box.style.display = "none"; 
 result_box.style.display = "none"; 
 next_btn.style.display = "none"; 
+next_btn2.style.display = "none"; 
 
 var js = document.createElement("script");
-//js.src = "assets/js/inf_1.js";
 js.src = "quizes/" + quizID + ".js";
 document.getElementById('cont').appendChild(js);
 
@@ -26,6 +27,8 @@ let que_numb = 1;
 let userScore = 0;
 let incorque = 0;
 let counter;
+
+continue_btn.classList.remove('d-none');
 
 continue_btn.onclick = ()=>{
     info_box.style.display = "none"; 
@@ -51,11 +54,13 @@ restart_quiz.onclick = ()=>{
     queCounter(que_numb); 
     clearInterval(counter); 
     startTimer(timeValue);
-    timeText.innerHTML = '<i class="bi bi-alarm"></i>'; 
+    timeText.innerHTML = '<i class="bi bi-clock-history"></i>'; 
     next_btn.style.display = "none"; 
+    next_btn2.style.display = "none"; 
 }
 
 const bottom_ques_counter = document.getElementById('total_que');
+const bottom_ques_counter2 = document.getElementById('total_que2');
 
 next_btn.onclick = ()=>{
     if(que_count < questions.length - 1){ 
@@ -65,8 +70,26 @@ next_btn.onclick = ()=>{
         queCounter(que_numb); 
         clearInterval(counter); 
         startTimer(timeValue); 
-        timeText.innerHTML = '<i class="bi bi-alarm"></i>'; 
+        timeText.innerHTML = '<i class="bi bi-clock-history"></i>'; 
         next_btn.style.display = "none"; 
+        next_btn2.style.display = "none"; 
+    }else{
+        clearInterval(counter);  
+        showResult(); 
+    }
+}
+
+next_btn2.onclick = ()=>{
+    if(que_count < questions.length - 1){ 
+        que_count++; 
+        que_numb++; 
+        showQuetions(que_count);
+        queCounter(que_numb); 
+        clearInterval(counter); 
+        startTimer(timeValue); 
+        timeText.innerHTML = '<i class="bi bi-clock-history"></i>'; 
+        next_btn.style.display = "none"; 
+        next_btn2.style.display = "none"; 
     }else{
         clearInterval(counter);  
         showResult(); 
@@ -86,6 +109,8 @@ function showQuetions(index){
     var option4 = '';
     var option5 = '';
 
+    var cols = 0;
+
     if (answerMixing == true) {
         shuffle(questions[index].options);
     };
@@ -93,20 +118,28 @@ function showQuetions(index){
     
     let que_tag =  questions[index].numb + ". " + questions[index].question;
     if (questions[index].options[0] != '') {
-        option1 = optionStart + questions[index].options[0] + optionEnd;
-    }
+        option1 = optionStart + htmlEncode(questions[index].options[0]) + optionEnd;
+        cols++;
+    };
     if (questions[index].options[1] != undefined) {
-        option2 = optionStart + questions[index].options[1] + optionEnd;
-    }
+        option2 = optionStart + htmlEncode(questions[index].options[1]) + optionEnd;
+        cols++;
+    };
     if (questions[index].options[2] != undefined) {
-        option3 = optionStart + questions[index].options[2] + optionEnd;
-    }
+        option3 = optionStart + htmlEncode(questions[index].options[2]) + optionEnd;
+        cols++;
+    };
     if (questions[index].options[3] != undefined) {
-        option4 = optionStart + questions[index].options[3] + optionEnd;
-    }
+        option4 = optionStart + htmlEncode(questions[index].options[3]) + optionEnd;
+        cols++;
+    };
     if (questions[index].options[4] != undefined) {
-        option5 = optionStart + questions[index].options[4] + optionEnd;
-    }
+        option5 = optionStart + htmlEncode(questions[index].options[4]) + optionEnd;
+        cols++;
+    };
+    let rowCols = "row-cols-md-"+cols;
+    option_list.classList.add(rowCols);
+
     let option_tag = option1 + option2 + option3 + option4 + option5;
     que_text.innerHTML = que_tag; 
     option_list.innerHTML = option_tag; 
@@ -123,8 +156,8 @@ let crossIconTag = '<i class="bi bi-dash-circle text-end text-danger fs-3"></i>'
 
 function optionSelected(answer){
     clearInterval(counter); 
-    let userAns = answer.textContent; 
-    let correcAns = questions[que_count].answer; 
+    let userAns = htmlEncode(answer.textContent); 
+    let correcAns = htmlEncode(questions[que_count].answer); 
     const allOptions = option_list.children.length; 
     
     if(userAns == correcAns){ 
@@ -141,7 +174,7 @@ function optionSelected(answer){
         iconCol.innerHTML = crossIconTag;  
 
         for(i=0; i < allOptions; i++){
-            if(option_list.children[i].textContent == correcAns){  
+            if(htmlEncode(option_list.children[i].textContent) == correcAns){  
                 let option = option_list.children[i].querySelector('#option');
                 option.classList.remove("option");
                 option.classList.add("correct");  
@@ -154,6 +187,7 @@ function optionSelected(answer){
         option_list.children[i].classList.add("pe-none"); 
     }
     next_btn.style.display = "block"; 
+    next_btn2.style.display = "block"; 
 }
 
 function showResult(){
@@ -180,7 +214,7 @@ function startTimer(time){
         }
         if(time < 0){ 
             clearInterval(counter); 
-            timeText.innerHTML = '<i class="bi bi-alarm"></i>'; 
+            timeText.innerHTML = '<i class="bi bi-clock-history"></i>'; 
             const allOptions = option_list.children.length; 
             let correcAns = questions[que_count].answer; 
             for(i=0; i < allOptions; i++){
@@ -200,9 +234,19 @@ function startTimer(time){
     }
 }
 
+function htmlEncode(string) {
+    return string.replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/'/g, '&#39;')
+                .replace(/"/g, '&#34;')
+                .replace(/\//, '&#x2F;');
+}
+
 function queCounter(index){
     let totalQueCounTag =  '№ '+ index +' / '+ questions.length +' сұрақ';
     bottom_ques_counter.innerHTML = totalQueCounTag;
+    bottom_ques_counter2.innerHTML = totalQueCounTag;
 }
 
 function shuffle(array) {

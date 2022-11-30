@@ -1,7 +1,7 @@
 var title = 'ICT | Rashitov Rishat';
 var questionCount = 20;
 var timeValue = 60;
-var answerMixing = true;
+var answerMixing = false;
 var deadLine = false;
 let syllabus = "Group: <span class='text-primary'>informatics 201</span>"
 
@@ -34,22 +34,22 @@ let questions = [
     },{
         numb: "3",
         question: "Which tag is used to create links in HTML:",
-        options: ["&lt;img&gt;","&lt;font&gt;","&lt;a&gt;"],
+        options: ["<img>","<font>","<a>"],
         answer: "<a>"
     },{
         numb: "4",
         question: "A list in which the enumeration elements are marked with bullets allows you to create a tag:",
-        options: ["&lt;ul&gt;","&lt;bl&gt;","&lt;ol&gt;"],
+        options: ["<ul>","<bl>","<ol>"],
         answer: "<ul>"
     },{
         numb: "5",
         question: "How to make the text oblique (italics). Using the tag:",
-        options: ["&lt;br&gt;","&lt;p&gt;","&lt;i&gt;"],
+        options: ["<br>","<p>","<i>"],
         answer: "<i>"
     },{
         numb: "6",
         question: "A tag that connects scripts that are executed on the client side to an existing HTML document:",
-        options: ["&lt;client&gt;","&lt;script&gt;","&lt;object&gt;"],
+        options: ["<client>","<script>","<object>"],
         answer: "<script>"
     },{
         numb: "7",
@@ -74,12 +74,12 @@ let questions = [
     },{
         numb: "11",
         question: "An HTML tag that allows you to play audio recordings is:",
-        options: ["&lt;music&gt;","&lt;sound&gt;","&lt;audio&gt;"],
+        options: ["<music>","<sound>","<audio>"],
         answer: "<audio>"
     },{
         numb: "12",
         question: "The text will be placed in two lines if you write the code:",
-        options: ["&lt;p&gt; Computer &lt;br&gt; technologies &lt;/p&gt;","&lt;p&gt; &lt;br&gt; Computer technology &lt;/br&gt;&lt;/p&gt;","&lt;p&gt; Computer &lt;br&gt; technologies &lt;/br&gt;&lt;/p&gt;"],
+        options: ["<p> Computer <br> technologies </p>;","<p> <br> Computer technology </br></p>","<p> Computer <br> technologies </br></p>"],
         answer: "<p> Computer <br> technologies </p>"
     },{
         numb: "13",
