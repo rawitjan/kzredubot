@@ -230,6 +230,7 @@ function startTimer(time){
                 option_list.children[i].classList.add("pe-none"); 
             }
             next_btn.style.display = "block"; 
+            next_btn2.style.display = "block";
         }
     }
 }
