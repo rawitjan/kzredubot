@@ -22,7 +22,6 @@ const quizButtons = {
     })
 };
 
-bot.onText(/help/, (msg) => bot.sendMessage(msg.chat.id, "This bot implements a T-Rex jumping game. Say /game if you want to play."));
 bot.onText(/start|game/, (msg) => bot.sendGame(msg.chat.id, "quiz", quizButtons));
 bot.onText(/inf_1/, (msg) => bot.sendGame(msg.chat.id, "inf_1", quizButtons));
 

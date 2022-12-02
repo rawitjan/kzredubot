@@ -28,7 +28,11 @@ let userScore = 0;
 let incorque = 0;
 let counter;
 
+
+
 continue_btn.classList.remove('d-none');
+
+
 
 continue_btn.onclick = ()=>{
     info_box.style.display = "none"; 
@@ -99,7 +103,23 @@ next_btn2.onclick = ()=>{
 let optionStart = '<div class="col mt-2"><div class="card h-100 shadow-sm option" id="option"><div class="row"><div class="col my-auto">';
 let optionEnd = '</div><div class="col-auto my-auto" id="icon"></div></div></div></div>';
 
+function showDetail(){
+    document.getElementById('quizTitle').textContent = title;
+    document.getElementById('quizTitle2').textContent = title;
+    document.getElementById('questionsCount').textContent = questionCount;
+    if (answerMixing == false) {
+        document.getElementById('answerMixMode').textContent = 'Өшірілген';
+    } else {
+        document.getElementById('answerMixMode').textContent = 'Қосулы';
+    };
+    document.getElementById('answerTime').textContent = timeValue+' с.';
 
+    if (about == true) {
+        document.getElementById('sbtn2').classList.remove('d-none');
+        document.getElementById('sbtn').classList.remove('d-none');
+        document.getElementById('syllabus').innerHTML = syllabus;
+    };
+}
 
 function showQuetions(index){
     const que_text = document.getElementById('que_text');
@@ -230,7 +250,7 @@ function startTimer(time){
                 option_list.children[i].classList.add("pe-none"); 
             }
             next_btn.style.display = "block"; 
-            next_btn2.style.display = "block";
+            next_btn2.style.display = "block"; 
         }
     }
 }
