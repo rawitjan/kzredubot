@@ -100,7 +100,7 @@ next_btn2.onclick = ()=>{
     }
 }
 
-let optionStart = '<div class="col mt-2"><div class="card h-100 shadow-sm option" id="option"><div class="row"><div class="col my-auto">';
+let optionStart = '<div class="col mt-2"><div class="card h-100 shadow-sm option" id="option"><div class="row my-auto"><div class="col my-auto">';
 let optionEnd = '</div><div class="col-auto my-auto" id="icon"></div></div></div></div>';
 
 function showDetail(){
@@ -145,15 +145,15 @@ function showQuetions(index){
         option2 = optionStart + htmlEncode(questions[index].options[1]) + optionEnd;
         cols++;
     };
-    if (questions[index].options[2] != undefined) {
+    if (questions[index].options[2] != undefined || questions[index].options[2] != '') {
         option3 = optionStart + htmlEncode(questions[index].options[2]) + optionEnd;
         cols++;
     };
-    if (questions[index].options[3] != undefined) {
+    if (questions[index].options[3] != undefined || questions[index].options[3] != '') {
         option4 = optionStart + htmlEncode(questions[index].options[3]) + optionEnd;
         cols++;
     };
-    if (questions[index].options[4] != undefined) {
+    if (questions[index].options[4] != undefined || questions[index].options[4] != '') {
         option5 = optionStart + htmlEncode(questions[index].options[4]) + optionEnd;
         cols++;
     };

@@ -35,10 +35,14 @@ body {
   border-radius: 5px; 
   padding: 8px 15px;}
 
-@media (min-width: 992px) {
-    .option {
+@media (min-width: 900px) {
+    .option .row{
       min-height: 200px;
-      margin-top: 50%;
+      text-align: center;
+    }
+
+    .incorrect, .correct {
+      text-align: center;
     }
 }
 
