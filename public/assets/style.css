@@ -35,6 +35,13 @@ body {
   border-radius: 5px; 
   padding: 8px 15px;}
 
+@media (min-width: 992px) {
+    .option {
+      min-height: 200px;
+      margin-top: 50%;
+    }
+}
+
   .option:hover{
       color: #004085;
       background: #cce5ff;
