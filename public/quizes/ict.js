@@ -1,5 +1,5 @@
 var title = 'ICT | Rashitov Rishat';
-var questionCount = 20;
+var questionCount = 1;
 var timeValue = 60;
 var answerMixing = true;
 var deadLine = false;
@@ -24,7 +24,7 @@ let questions = [
     {
         numb: "1",
         question: "Operating system is …",
-        options: ["the main program (complex of programs) on a computer.","the additional program (complex of programs) on a computer.","the internet based program on a computer.","the game program on a computer","the open source program on a computer"],
+        options: ["the main program (complex of programs) on a computer.","the game program on a computer","the open source program on a computer"],
         answer: "the main program (complex of programs) on a computer."
     },
 ]

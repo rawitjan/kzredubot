@@ -14,7 +14,7 @@ let questions = [
                     numb: 1,
                     question: '﻿Operating system is …',
                     answer: 'the main program (complex of programs) on a computer.',
-                    options: ['the main program (complex of programs) on a computer.','the additional program (complex of programs) on a computer..','the internet based program on a computer.','the game program on a computer.','the open source program on a computer.']
+                    options: ['the main program (complex of programs) on a computer.','the game program on a computer.','the open source program on a computer.']
                 }
                 ,
                 {

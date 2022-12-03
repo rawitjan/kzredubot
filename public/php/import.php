@@ -79,7 +79,7 @@ let questions = [
 ";
 
 
-echo "<pre>$quizData</pre>";
+echo "<code><pre><textarea class='form-control'>$quizData</textarea></pre></code>";
 ?>
 <!DOCTYPE html>
 <html lang="kk">
