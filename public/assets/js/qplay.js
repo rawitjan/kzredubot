@@ -1,31 +1,32 @@
 
 var url = new URL(location.href);
-var playerid = url.searchParams.get("id");
-var quizID = url.searchParams.get("quizID");
+var playerid = url.searchParams.get("id"); //URL-ден клиенттің идентификаторы алынады
+var quizID = url.searchParams.get("quizID"); //URL-ден куиздің идентификаторы алынады
 
-const info_box = document.getElementById('info');
-const continue_btn = document.getElementById('continue');
-const quiz_box = document.getElementById('quiz');
-const result_box = document.getElementById('result_box');
-const option_list = document.getElementById('option_list');
-const timeText = document.getElementById('time_text');
-const timeCount = document.getElementById('timer');
-const next_btn = document.getElementById('next');
-const next_btn2 = document.getElementById('next2');
+const info_box = document.getElementById('info'); //Деректер шығарылатын div 
+const continue_btn = document.getElementById('continue'); //Жалғастыру батырмасы
+const quiz_box = document.getElementById('quiz'); //сұрақтар шығарылатын негізгі  div
+const result_box = document.getElementById('result_box'); //Нәтиже шығарылатын div
+const option_list = document.getElementById('option_list'); //Жауап нұсқалары шығарылатын элемент
+const timeText = document.getElementById('time_text'); //Таймер иконкасының элементі
+const timeCount = document.getElementById('timer'); //Қалған уақытты шығаратын элемент
+const next_btn = document.getElementById('next'); //Келесі сұрақ батырмасы
+const next_btn2 = document.getElementById('next2'); //Келесі сұрақ батырмасы
 
-quiz_box.style.display = "none"; 
-result_box.style.display = "none"; 
-next_btn.style.display = "none"; 
-next_btn2.style.display = "none"; 
+quiz_box.style.display = "none"; //Сұрақтар шығарылатын негізгі div-ті әзірге жасыру
+result_box.style.display = "none"; //Нәтиже шығарылатын div-ті әзірге жасыру
+next_btn.style.display = "none"; //Келесі батырмасын жасыру
+next_btn2.style.display = "none"; //Келесі батырмасын жасыру
 
 var js = document.createElement("script");
-js.src = "quizes/" + quizID + ".js";
+js.src = "quizes/" + quizID + ".js"; //Куиздің деректер қоймасын алу
 document.getElementById('cont').appendChild(js);
 
 let que_count = 0;
 let que_numb = 1;
 let userScore = 0;
 let incorque = 0;
+let noAnswer = 0;
 let counter;
 
 
@@ -34,25 +35,26 @@ continue_btn.classList.remove('d-none');
 
 
 
-continue_btn.onclick = ()=>{
-    info_box.style.display = "none"; 
-    quiz_box.style.display = "block"; 
+continue_btn.onclick = ()=>{ //Жалғастыру батырмасын басқанда орындалатын функция
+    info_box.style.display = "none"; //Куиз деректері div-ін жасыру
+    quiz_box.style.display = "block"; //Куиз div-ін ашу
     showQuetions(0); 
     queCounter(1); 
-    startTimer(timeValue);
+    startTimer(timeValue); //Таймерді бастау
 }
 
-const restart_quiz = document.getElementById('restart');
+const restart_quiz = document.getElementById('restart'); //Қайта бастау батырмасын алу
 
 
-restart_quiz.onclick = ()=>{
-    quiz_box.style.display = "block"; 
+restart_quiz.onclick = ()=>{ //кайта бастау батырмасын басқандағы орындалатын фунция
+    quiz_box.style.display = "block"; //куиздің блогін ашу
     result_box.style.display = "none"; 
-    timeValue =  20;
-    que_count = 0;
+    timeValue =  20; //таймер
+    que_count = 0; 
     que_numb = 1;
-    userScore = 0;
+    userScore = 0; //пайдаланушы ұпайы 0 деу
     incorque = 0;
+    noAnswer = 0;
     widthValue = 0;
     showQuetions(que_count); 
     queCounter(que_numb); 
@@ -66,7 +68,7 @@ restart_quiz.onclick = ()=>{
 const bottom_ques_counter = document.getElementById('total_que');
 const bottom_ques_counter2 = document.getElementById('total_que2');
 
-next_btn.onclick = ()=>{
+next_btn.onclick = ()=>{ //Келесі сұраққа өту батырмасын басқанда орындалатын функция
     if(que_count < questions.length - 1){ 
         que_count++; 
         que_numb++; 
@@ -83,7 +85,7 @@ next_btn.onclick = ()=>{
     }
 }
 
-next_btn2.onclick = ()=>{
+next_btn2.onclick = ()=>{ //Келесі сұраққа өту батырмасын басқанда орындалатын функция
     if(que_count < questions.length - 1){ 
         que_count++; 
         que_numb++; 
@@ -103,7 +105,7 @@ next_btn2.onclick = ()=>{
 let optionStart = '<div class="col mt-2"><div class="card h-100 shadow-sm option" id="option"><div class="row my-auto"><div class="col my-auto">';
 let optionEnd = '</div><div class="col-auto my-auto" id="icon"></div></div></div></div>';
 
-function showDetail(){
+function showDetail(){ //Quiz деректерін клиенттің веб бетіне шығару
     document.getElementById('quizTitle').textContent = title;
     document.getElementById('quizTitle2').textContent = title;
     document.getElementById('questionsCount').textContent = questionCount;
@@ -121,7 +123,7 @@ function showDetail(){
     };
 }
 
-function showQuetions(index){
+function showQuetions(index){ // Сұрақты клиенттің веб бетіне шығару
     const que_text = document.getElementById('que_text');
     var option1 = '';
     var option2 = '';
@@ -129,10 +131,10 @@ function showQuetions(index){
     var option4 = '';
     var option5 = '';
 
-    var cols = 0;
+    let cols = 0;
 
     if (answerMixing == true) {
-        shuffle(questions[index].options);
+        shuffle(questions[index].options); //Жауап нұсқаларын алмастыру
     };
     
     
@@ -141,23 +143,34 @@ function showQuetions(index){
         option1 = optionStart + htmlEncode(questions[index].options[0]) + optionEnd;
         cols++;
     };
-    if (questions[index].options[1] != undefined) {
+    if (questions[index].options[1] != '' && questions[index].options[1] != undefined) {
         option2 = optionStart + htmlEncode(questions[index].options[1]) + optionEnd;
         cols++;
     };
-    if (questions[index].options[2] != undefined || questions[index].options[2] != '') {
+    if (questions[index].options[2] != '' && questions[index].options[2] != undefined) {
         option3 = optionStart + htmlEncode(questions[index].options[2]) + optionEnd;
         cols++;
     };
-    if (questions[index].options[3] != undefined || questions[index].options[3] != '') {
+    if (questions[index].options[3] != '' && questions[index].options[3] != undefined) {
         option4 = optionStart + htmlEncode(questions[index].options[3]) + optionEnd;
         cols++;
     };
-    if (questions[index].options[4] != undefined || questions[index].options[4] != '') {
+    if (questions[index].options[4] != '' && questions[index].options[4] != undefined) {
         option5 = optionStart + htmlEncode(questions[index].options[4]) + optionEnd;
         cols++;
     };
-    let rowCols = "row-cols-md-"+cols;
+
+    var classList = option_list.classList;
+    while (classList.length > 0) {
+        classList.remove(classList.item(0));
+    }
+
+
+    let rowCols = "row-cols-md-"+cols; //Ноутбук/Компьютерде экранды жауап нұсқаларының санына қарай бөлу
+    option_list.classList.add("row");
+    option_list.classList.add("row-cols-1");
+    option_list.classList.add("g-4");
+    option_list.classList.add("m-1");
     option_list.classList.add(rowCols);
 
     let option_tag = option1 + option2 + option3 + option4 + option5;
@@ -174,19 +187,19 @@ function showQuetions(index){
 let tickIconTag = '<i class="bi bi-check2-circle text-end text-success fs-2"></i>';
 let crossIconTag = '<i class="bi bi-dash-circle text-end text-danger fs-3"></i>';
 
-function optionSelected(answer){
+function optionSelected(answer){ // Жауапты таңдағанда орындалатын функция
     clearInterval(counter); 
-    let userAns = htmlEncode(answer.textContent); 
-    let correcAns = htmlEncode(questions[que_count].answer); 
+    let userAns = htmlEncode(answer.textContent); //Клиенттің таңдаған жауабын алу
+    let correcAns = htmlEncode(questions[que_count].answer); //Дұрыс жауап нұқасын масссивтен алу
     const allOptions = option_list.children.length; 
     
-    if(userAns == correcAns){ 
-        userScore += 1;
+    if(userAns == correcAns){ //Клиент таңдаған жауап дұрыс болса
+        userScore += 1; //+1 балл
         answer.classList.remove("option");
-        answer.classList.add("correct"); 
+        answer.classList.add("correct"); //Стиль
         let iconCol = answer.querySelector('#icon');
         iconCol.innerHTML = tickIconTag; 
-    }else{
+    }else{ //Қате жауап таңдалса
         incorque += 1;
         answer.classList.remove("option"); 
         answer.classList.add("incorrect"); 
@@ -210,20 +223,20 @@ function optionSelected(answer){
     next_btn2.style.display = "block"; 
 }
 
-function showResult(){
+function showResult(){ //Нәтижені экранға шығару үшін
     info_box.style.display = "none"; 
     quiz_box.style.display = "none"; 
     result_box.style.display = "block"; 
     const scoreText = document.getElementById("score");
     let scoreTag = '<table class="table"><tr><th scope="row">Қате:</th><td>'+ incorque +'</td></tr><tr><th scope="row">Дұрыс:</th><td>'+ userScore +'</td></tr><tr><th scope="row">Барлық сұрақ саны:</th><td>'+ questions.length +'</td></tr></table>'
     scoreText.innerHTML = scoreTag; 
-    var xmlhttp = new XMLHttpRequest();
+    var xmlhttp = new XMLHttpRequest(); // Нәтижені сақтау үшін
     var url = "https://kzredubot.herokuapp.com/highscore/" + userScore + "?id=" + playerid;
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 }
 
-function startTimer(time){
+function startTimer(time){ //Таймер 
     counter = setInterval(timer, 1000);
     function timer(){
         timeCount.textContent = time; 
@@ -232,7 +245,8 @@ function startTimer(time){
             let addZero = timeCount.textContent; 
             timeCount.textContent = "0" + addZero; 
         }
-        if(time < 0){ 
+        if(time < 0){ //Егер берілген уақытқа дейін дұрыс жауап таңдалмаса автоматты түрде дұрыс жауап таңдалады
+            noAnswer += 1
             clearInterval(counter); 
             timeText.innerHTML = '<i class="bi bi-clock-history"></i>'; 
             const allOptions = option_list.children.length; 
@@ -255,7 +269,7 @@ function startTimer(time){
     }
 }
 
-function htmlEncode(string) {
+function htmlEncode(string) { //сұрақта/жауап нұсқаларында html тіліндегі элементтер болса кодтау
     return string.replace(/&/g, '&amp;')
                 .replace(/</g, '&lt;')
                 .replace(/>/g, '&gt;')
@@ -264,12 +278,12 @@ function htmlEncode(string) {
                 .replace(/\//, '&#x2F;');
 }
 
-function queCounter(index){
+function queCounter(index){ //Қазіргі сұрақ санымен барлық сұрақ санын экранның төменгі бұрышына шығару үшін
     let totalQueCounTag =  '№ '+ index +' / '+ questions.length +' сұрақ';
     bottom_ques_counter.innerHTML = totalQueCounTag;
     bottom_ques_counter2.innerHTML = totalQueCounTag;
 }
 
-function shuffle(array) {
+function shuffle(array) { //Жауап нұсқаларын алмастыратын функция
     array.sort(() => Math.random() - 0.5);
 }

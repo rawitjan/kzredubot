@@ -3,16 +3,10 @@ var questionCount = 30;
 var timeValue = 20;
 var answerMixing = false;
 var deadLine = false;
+var about = false;
+let syllabus = '';
 
-document.getElementById('quizTitle').textContent = title;
-document.getElementById('quizTitle2').textContent = title;
-document.getElementById('questionsCount').textContent = questionCount;
-if (answerMixing = false) {
-    document.getElementById('answerMixMode').textContent = 'Өшірілген';
-} else {
-    document.getElementById('answerMixMode').textContent = 'Қосулы';
-};
-document.getElementById('answerTime').textContent = timeValue+' с.';
+showDetail();
 
 
 let questions = [
@@ -23,7 +17,6 @@ let questions = [
         options: [
             "Жалпы жел", 
             "Жергілікті желі", 
-            "Жергілікті пошта", 
             "Территориялық желі"
         ]
     },{

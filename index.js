@@ -27,7 +27,7 @@ bot.onText(/inf_1/, (msg) => bot.sendGame(msg.chat.id, "inf_1", quizButtons));
 
 bot.on("callback_query", function (query) {
         queries[query.id] = query;
-        let gameurl = "https://kzredubot.herokuapp.com/index.html?id="+query.id+"&quizID="+query.game_short_name+"&game"+query.inline_message_id;
+        let gameurl = "https://kzredubot.herokuapp.com/index.html?id="+query.id+"&quizID="+query.game_short_name+"&game="+query.inline_message_id;
         bot.answerCallbackQuery({
             callback_query_id: query.id,
             url: gameurl,
@@ -36,7 +36,7 @@ bot.on("callback_query", function (query) {
 });
 
 bot.on("inline_query", function(iq) {
-    bot.answerInlineQuery(iq.id, [ { type: "game", id: "0", game_short_name: iq.query, reply_markup: quizButtons} ] ); 
+    bot.answerInlineQuery(iq.id, [ { type: "game", id: "0", game_short_name: iq.query, quizButtons} ] ); 
 });
 
 server.use(express.static(path.join(__dirname, 'public')));

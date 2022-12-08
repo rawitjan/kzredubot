@@ -1,5 +1,5 @@
 var title = 'ICT 1-30'; 
-var questionCount = 31; 
+var questionCount = 30; 
 var timeValue = 30;
 var answerMixing = true;
 var deadLine = false;
@@ -14,7 +14,7 @@ let questions = [
                     numb: 1,
                     question: '﻿Operating system is …',
                     answer: 'the main program (complex of programs) on a computer.',
-                    options: ['the main program (complex of programs) on a computer.','the game program on a computer.','the open source program on a computer.']
+                    options: ['the main program (complex of programs) on a computer.','the game program on a computer.','the open source program on a computer.', '', '']
                 }
                 ,
                 {
@@ -219,5 +219,4 @@ let questions = [
                     answer: 'It is a website. Known as a gateway of internet. (Search engine)',
                     options: ['It is a website. Known as a gateway of internet. (Search engine)','Connecting computers with each other for exchanging information','It is a program or computer for getting special information from another compute.','It is a program or computer, which gives information to the client computer.','It is a rules for connecting to the internet. (TCP/IP)']
                 }
-                ,
 ];
