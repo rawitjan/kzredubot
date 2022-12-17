@@ -2,6 +2,7 @@ var title = 'Әлеуметтану / 1-152';
 var questionCount = 152; 
 var timeValue = 60;
 var answerMixing = true;
+var questionMixing = true;
 var deadLine = false;
 var about = false;
 let syllabus = '';
@@ -1075,3 +1076,5 @@ let questions = [
                 }
                 ,
 ];
+showqa();
+shuffle(questions);

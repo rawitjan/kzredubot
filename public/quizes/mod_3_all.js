@@ -2,6 +2,7 @@ var title = 'Мәдениеттану / 1-140';
 var questionCount = 140; 
 var timeValue = 60;
 var answerMixing = true;
+var questionMixing = true;
 var deadLine = false;
 var about = false;
 let syllabus = '';
@@ -991,3 +992,5 @@ let questions = [
                 }
                 ,
 ];
+showqa();
+shuffle(questions);

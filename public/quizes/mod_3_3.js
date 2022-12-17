@@ -291,3 +291,4 @@ let questions = [
                 }
                 ,
 ];
+showqa();

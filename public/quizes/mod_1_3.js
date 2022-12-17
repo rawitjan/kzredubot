@@ -375,3 +375,4 @@ let questions = [
                 }
                 ,
 ];
+showqa();

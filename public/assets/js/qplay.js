@@ -2,6 +2,7 @@
 var url = new URL(location.href);
 var playerid = url.searchParams.get("id"); //URL-ден клиенттің идентификаторы алынады
 var quizID = url.searchParams.get("quizID"); //URL-ден куиздің идентификаторы алынады
+var chat = url.searchParams.get("chatID");
 
 const info_box = document.getElementById('info'); //Деректер шығарылатын div 
 const continue_btn = document.getElementById('continue'); //Жалғастыру батырмасы
@@ -41,6 +42,7 @@ continue_btn.onclick = ()=>{ //Жалғастыру батырмасын бас�
     showQuetions(0); 
     queCounter(1); 
     startTimer(timeValue); //Таймерді бастау
+    
 }
 
 const restart_quiz = document.getElementById('restart'); //Қайта бастау батырмасын алу
@@ -116,11 +118,22 @@ function showDetail(){ //Quiz деректерін клиенттің веб б�
     };
     document.getElementById('answerTime').textContent = timeValue+' с.';
 
-    if (about == true) {
-        document.getElementById('sbtn2').classList.remove('d-none');
+    //if (about == true) {};
+    
+    document.getElementById('sbtn2').classList.remove('d-none');
         document.getElementById('sbtn').classList.remove('d-none');
         document.getElementById('syllabus').innerHTML = syllabus;
-    };
+
+        
+}
+
+function showqa() {
+    let out_arr = document.getElementById('syllabus');
+    let str = ' ';
+    for (let i = 0; i< questions.length; i++  ) {
+        if (questions[i]!==undefined) str +="<b>"+questions[index].numb + ". " + questions[index].question+" / <b>"+questions[index].answer+"<br>";
+    }
+    out_arr.innerHTML = str;
 }
 
 function showQuetions(index){ // Сұрақты клиенттің веб бетіне шығару
@@ -234,6 +247,11 @@ function showResult(){ //Нәтижені экранға шығару үшін
     var url = "https://kzredubot.herokuapp.com/highscore/" + userScore + "?id=" + playerid;
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
+
+    var sxmlhttp = new XMLHttpRequest(); // Нәтижені сақтау үшін
+    var surl = "https://kzredubot.herokuapp.com/setscore/" + userScore + "?id=" + playerid;
+    sxmlhttp.open("GET", surl, true);
+    sxmlhttp.send();
 }
 
 function startTimer(time){ //Таймер 
@@ -287,3 +305,4 @@ function queCounter(index){ //Қазіргі сұрақ санымен барл�
 function shuffle(array) { //Жауап нұсқаларын алмастыратын функция
     array.sort(() => Math.random() - 0.5);
 }
+
