@@ -131,7 +131,7 @@ function showqa() {
     let out_arr = document.getElementById('syllabus');
     let str = ' ';
     for (let i = 0; i< questions.length; i++  ) {
-        if (questions[i]!==undefined) str +="<b>"+questions[index].numb + ". " + questions[index].question+" / <b>"+questions[index].answer+"<br>";
+        str +="<b>"+questions[index].numb + ". " + questions[index].question+" / <b>"+questions[index].answer+"<br>";
     }
     out_arr.innerHTML = str;
 }
