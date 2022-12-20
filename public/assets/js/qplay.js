@@ -30,11 +30,28 @@ let incorque = 0;
 let noAnswer = 0;
 let counter;
 
+var userName = localStorage.getItem('userName'); 
+if (userName == undefined || userName == '') {
+    info_box.style.display = "none";
+    document.getElementById('login').classList.remove("d-none");
+} else {
+    getUserName();
+    var playerName = localStorage.getItem('userName');
+};
 
+function saveUserName() {
+    var playerName = document.getElementById("username").value;
+    if (playerName != '') {
+        localStorage.setItem('userName', playerName);
+        document.getElementById('login').classList.add("d-none");
+        info_box.style.display = "block";
+        getUserName();
+    };
+};
 
-continue_btn.classList.remove('d-none');
-
-
+function getUserName() {
+    document.getElementById('quizTitle2').textContent = '<i class="bi bi-person"></i> '+localStorage.getItem('userName');
+};
 
 continue_btn.onclick = ()=>{ //Жалғастыру батырмасын басқанда орындалатын функция
     info_box.style.display = "none"; //Куиз деректері div-ін жасыру
@@ -109,7 +126,6 @@ let optionEnd = '</div><div class="col-auto my-auto" id="icon"></div></div></div
 
 function showDetail(){ //Quiz деректерін клиенттің веб бетіне шығару
     document.getElementById('quizTitle').textContent = title;
-    document.getElementById('quizTitle2').textContent = title;
     document.getElementById('questionsCount').textContent = questionCount;
     if (answerMixing == false) {
         document.getElementById('answerMixMode').textContent = 'Өшірілген';
@@ -118,13 +134,13 @@ function showDetail(){ //Quiz деректерін клиенттің веб б�
     };
     document.getElementById('answerTime').textContent = timeValue+' с.';
 
-    //if (about == true) {};
-    
-    document.getElementById('sbtn2').classList.remove('d-none');
+    if (about == true) {
+        document.getElementById('sbtn2').classList.remove('d-none');
         document.getElementById('sbtn').classList.remove('d-none');
         document.getElementById('syllabus').innerHTML = syllabus;
-
-        
+    };
+    
+    continue_btn.classList.remove('d-none');
 }
 
 function showqa() {
@@ -243,15 +259,20 @@ function showResult(){ //Нәтижені экранға шығару үшін
     const scoreText = document.getElementById("score");
     let scoreTag = '<table class="table"><tr><th scope="row">Қате:</th><td>'+ incorque +'</td></tr><tr><th scope="row">Дұрыс:</th><td>'+ userScore +'</td></tr><tr><th scope="row">Барлық сұрақ саны:</th><td>'+ questions.length +'</td></tr></table>'
     scoreText.innerHTML = scoreTag; 
+
+    var sxmlhttp = new XMLHttpRequest(); // Нәтижені сақтау үшін
+    var surl = "https://kzredu.herokuapp.com/bot.php?eventType=setScore&quizTitle=" + title +"&chatID=" + chat + "&quizID=" + quizID + "&questionCount=" + questions.length + "&score=" + userScore + "&playerName=" + playerName;
+    sxmlhttp.open("GET", surl, true);
+    sxmlhttp.send();
+
+
+
     var xmlhttp = new XMLHttpRequest(); // Нәтижені сақтау үшін
     var url = "https://kzredubot.herokuapp.com/highscore/" + userScore + "?id=" + playerid;
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 
-    var sxmlhttp = new XMLHttpRequest(); // Нәтижені сақтау үшін
-    var surl = "https://kzredubot.herokuapp.com/setscore/" + userScore + "?id=" + playerid;
-    sxmlhttp.open("GET", surl, true);
-    sxmlhttp.send();
+    
 }
 
 function startTimer(time){ //Таймер 

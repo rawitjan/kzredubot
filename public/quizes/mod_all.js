@@ -3,7 +3,7 @@ var questionCount = 689;
 var timeValue = 999;
 var answerMixing = true;
 var deadLine = false;
-var about = false;
+var about = true;
 let syllabus = '';
 
 showDetail();
