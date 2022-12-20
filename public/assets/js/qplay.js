@@ -50,7 +50,7 @@ function saveUserName() {
 };
 
 function getUserName() {
-    document.getElementById('quizTitle2').textContent = '<i class="bi bi-person"></i> '+localStorage.getItem('userName');
+    document.getElementById('quizTitle2').textContent = localStorage.getItem('userName');
 };
 
 continue_btn.onclick = ()=>{ //Жалғастыру батырмасын басқанда орындалатын функция
@@ -261,7 +261,7 @@ function showResult(){ //Нәтижені экранға шығару үшін
     scoreText.innerHTML = scoreTag; 
 
     var sxmlhttp = new XMLHttpRequest(); // Нәтижені сақтау үшін
-    var surl = "https://kzredu.herokuapp.com/bot.php?eventType=setScore&quizTitle=" + title +"&chatID=" + chat + "&quizID=" + quizID + "&questionCount=" + questions.length + "&score=" + userScore + "&playerName=" + playerName;
+    var surl = "https://kzredu.herokuapp.com/index.php?eventType=setScore&quizTitle=" + encodeURIComponent(title) +"&chatID=" + chat + "&quizID=" + encodeURIComponent(quizID) + "&questionCount=" + questions.length + "&score=" + userScore + "&playerName=" + encodeURIComponent(playerName);
     sxmlhttp.open("GET", surl, true);
     sxmlhttp.send();
 
