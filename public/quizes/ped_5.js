@@ -3,7 +3,7 @@ var questionCount = 50;
 var timeValue = 60;
 var answerMixing = true;
 var deadLine = false;
-var about = false;
+var about = true;
 let syllabus = '';
 
 showDetail();
@@ -361,3 +361,4 @@ let questions = [
                 }
                 ,
 ];
+showqa();
