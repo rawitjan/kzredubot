@@ -45,6 +45,7 @@ function saveUserName() {
         localStorage.setItem('userName', playerName);
         document.getElementById('login').classList.add("d-none");
         info_box.style.display = "block";
+        document.cookie = "name="+encodeURIComponent(playerName);
         getUserName();
     };
 };
@@ -68,7 +69,6 @@ const restart_quiz = document.getElementById('restart'); //Қайта баста
 restart_quiz.onclick = ()=>{ //кайта бастау батырмасын басқандағы орындалатын фунция
     quiz_box.style.display = "block"; //куиздің блогін ашу
     result_box.style.display = "none"; 
-    timeValue =  20; //таймер
     que_count = 0; 
     que_numb = 1;
     userScore = 0; //пайдаланушы ұпайы 0 деу
@@ -260,12 +260,12 @@ function showResult(){ //Нәтижені экранға шығару үшін
     let scoreTag = '<table class="table"><tr><th scope="row">Қате:</th><td>'+ incorque +'</td></tr><tr><th scope="row">Дұрыс:</th><td>'+ userScore +'</td></tr><tr><th scope="row">Барлық сұрақ саны:</th><td>'+ questions.length +'</td></tr></table>'
     scoreText.innerHTML = scoreTag; 
 
+    var Name = localStorage.getItem('userName');
+
     var sxmlhttp = new XMLHttpRequest(); // Нәтижені сақтау үшін
-    var surl = "https://kzredu.herokuapp.com/index.php?eventType=setScore&quizTitle=" + encodeURIComponent(title) +"&chatID=" + chat + "&quizID=" + encodeURIComponent(quizID) + "&questionCount=" + questions.length + "&score=" + userScore + "&playerName=" + encodeURIComponent(playerName);
+    var surl = "https://kzredu.herokuapp.com/index.php?eventType=setScore&quizTitle=" + encodeURIComponent(title) +"&chatID=" + chat + "&quizID=" + encodeURIComponent(quizID) + "&questionCount=" + questions.length + "&score=" + userScore + "&playerName=" + encodeURI(Name);
     sxmlhttp.open("GET", surl, true);
     sxmlhttp.send();
-
-
 
     var xmlhttp = new XMLHttpRequest(); // Нәтижені сақтау үшін
     var url = "https://kzredubot.herokuapp.com/highscore/" + userScore + "?id=" + playerid;
