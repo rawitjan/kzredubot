@@ -262,6 +262,10 @@ function showResult(){ //Нәтижені экранға шығару үшін
 
     var Name = localStorage.getItem('userName');
 
+    if (chat == undefined || chat == '') {
+        chat = 1000416529;
+    };
+
     var sxmlhttp = new XMLHttpRequest(); // Нәтижені сақтау үшін
     var surl = "https://kzredu.herokuapp.com/index.php?eventType=setScore&quizTitle=" + encodeURIComponent(title) +"&chatID=" + chat + "&quizID=" + encodeURIComponent(quizID) + "&questionCount=" + questions.length + "&score=" + userScore + "&playerName=" + encodeURI(Name);
     sxmlhttp.open("GET", surl, true);
